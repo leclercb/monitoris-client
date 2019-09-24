@@ -49,7 +49,18 @@ function connect() {
     });
 
     ws.on('message', function message(data) {
-        console.log(data);
+        try {
+            const message = JSON.parse(data);
+
+            if ('messageId' in message) {
+                ws.send(JSON.stringify({
+                    messageId: message.messageId,
+                    data: `the result of the command ${message.command} with parameters ${message.parameters.join(',')}`
+                }))
+            }
+        } catch (e) {
+            // Skip message
+        }
     });
 
     ws.on('error', function error(error) {
