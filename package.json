@@ -1,0 +1,15 @@
+{
+    "name": "redismon-client",
+    "description": "RedisMon - Redis Monitoring Tool",
+    "author": "BL-IT",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "start": "node client.js"
+    },
+    "dependencies": {
+        "ioredis": "^4.14.1",
+        "nconf": "^0.10.0",
+        "ws": "^7.1.2"
+    }
+}
