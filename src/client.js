@@ -31,7 +31,7 @@ function connect() {
             const info = await redisClient.info();
 
             ws.send(JSON.stringify({
-                action: 'info',
+                messageId: 'info',
                 data: info
             }));
         }, 5000);
