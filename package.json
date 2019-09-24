@@ -5,11 +5,15 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "start": "node client.js"
+        "start": "node src/client.js",
+        "package": "pkg src/client.js"
     },
     "dependencies": {
         "ioredis": "^4.14.1",
         "nconf": "^0.10.0",
         "ws": "^7.1.2"
+    },
+    "devDependencies": {
+        "pkg": "^4.4.0"
     }
 }
