@@ -45,7 +45,7 @@ function connect() {
 
         setTimeout(function () {
             connect();
-        }, 2000);
+        }, 10000);
     });
 
     ws.on('message', function message(data) {
