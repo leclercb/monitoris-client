@@ -19,8 +19,12 @@ if (!instanceId || !secret) {
     return;
 }
 
+const url = new URL(nconf.get('proxy'));
+url.searchParams.set('instanceId', instanceId);
+url.searchParams.set('secret', secret);
+
 function connect() {
-    const ws = new WebSocket(`ws://localhost:5000/socket?instanceId=${instanceId}&secret=${secret}`);
+    const ws = new WebSocket(url);
 
     let interval;
 
