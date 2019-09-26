@@ -1,5 +1,6 @@
 const { nconf } = require('./config');
 const { createRedisClient } = require('./redis');
+const { URL } = require('url');
 const WebSocket = require('ws');
 
 const redisClient = createRedisClient();
