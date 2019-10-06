@@ -37,7 +37,7 @@ function connect() {
 
             ws.send(JSON.stringify({
                 messageId: 'info',
-                data: info
+                data: JSON.stringify(info)
             }));
         }, 5000);
     });
@@ -53,14 +53,15 @@ function connect() {
         }, 10000);
     });
 
-    ws.on('message', function message(data) {
+    ws.on('message', async function message(data) {
         try {
             const message = JSON.parse(data);
+            const result = await redisClient.call(message.command, message.parameters);
 
             if ('messageId' in message) {
                 ws.send(JSON.stringify({
                     messageId: message.messageId,
-                    data: `the result of the command ${message.command} with parameters ${message.parameters.join(',')}`
+                    data: JSON.stringify(result)
                 }))
             }
         } catch (e) {
