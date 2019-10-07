@@ -1,7 +1,8 @@
-const { nconf } = require('./config');
-const { createRedisClient } = require('./redis');
 const { URL } = require('url');
 const WebSocket = require('ws');
+const { nconf } = require('./config');
+const { getAgent } = require('./proxy');
+const { createRedisClient } = require('./redis');
 
 const redisClient = createRedisClient();
 
@@ -24,8 +25,11 @@ const url = new URL(nconf.get('proxy'));
 url.searchParams.set('instanceId', instanceId);
 url.searchParams.set('secret', secret);
 
+const agent = getAgent();
+const options = agent ? { agent } : {};
+
 function connect() {
-    const ws = new WebSocket(url);
+    const ws = new WebSocket(url, options);
 
     let interval;
 

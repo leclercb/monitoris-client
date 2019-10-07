@@ -1,5 +1,5 @@
-const { nconf } = require('./config');
 const Redis = require('ioredis');
+const { nconf } = require('./config');
 
 function createRedisClient() {
     if (!nconf.get('redis')) {
