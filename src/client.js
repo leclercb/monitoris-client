@@ -41,6 +41,7 @@ function connect() {
 
             ws.send(JSON.stringify({
                 messageId: 'info',
+                status: 200,
                 data: JSON.stringify(info)
             }));
         }, 5000);
@@ -65,6 +66,7 @@ function connect() {
             if ('messageId' in message) {
                 ws.send(JSON.stringify({
                     messageId: message.messageId,
+                    status: 200,
                     data: JSON.stringify(result)
                 }))
             }
