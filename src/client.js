@@ -37,13 +37,21 @@ function connect() {
         console.log("Connected");
 
         interval = setInterval(async () => {
+            ws.send(JSON.stringify({
+                messageId: 'status',
+                status: 200,
+                data: redisClient.status
+            }));
+
             const info = await redisClient.info();
 
-            ws.send(JSON.stringify({
-                messageId: 'info',
-                status: 200,
-                data: JSON.stringify(info)
-            }));
+            if (redisClient.status === 'ready') {
+                ws.send(JSON.stringify({
+                    messageId: 'info',
+                    status: 200,
+                    data: info
+                }));
+            }
         }, 5000);
     });
 
@@ -61,14 +69,23 @@ function connect() {
     ws.on('message', async function message(data) {
         try {
             const message = JSON.parse(data);
-            const result = await redisClient.call(message.command, message.parameters);
 
             if ('messageId' in message) {
-                ws.send(JSON.stringify({
-                    messageId: message.messageId,
-                    status: 200,
-                    data: JSON.stringify(result)
-                }))
+                if (redisClient.status === 'ready') {
+                    const result = await redisClient.call(message.command, message.parameters);
+
+                    ws.send(JSON.stringify({
+                        messageId: message.messageId,
+                        status: 200,
+                        data: result
+                    }));
+                } else {
+                    ws.send(JSON.stringify({
+                        messageId: message.messageId,
+                        status: 405,
+                        data: null
+                    }));
+                }
             }
         } catch (e) {
             // Skip message
