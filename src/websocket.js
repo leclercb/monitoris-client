@@ -46,13 +46,21 @@ function connectWebSocket(url, options, redisClient) {
                 if (redisClient.status === 'ready') {
                     await redisClient.select(message.db);
 
-                    const result = await redisClient.call(message.command, message.parameters);
+                    try {
+                        const result = await redisClient.call(message.command, message.parameters);
 
-                    ws.send(JSON.stringify({
-                        messageId: message.messageId,
-                        status: 200,
-                        data: result
-                    }));
+                        ws.send(JSON.stringify({
+                            messageId: message.messageId,
+                            status: 200,
+                            data: result
+                        }));
+                    } catch (e) {
+                        ws.send(JSON.stringify({
+                            messageId: message.messageId,
+                            status: 400,
+                            data: e.toString()
+                        }));
+                    }
                 } else {
                     ws.send(JSON.stringify({
                         messageId: message.messageId,
