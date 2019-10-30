@@ -24,7 +24,7 @@ function connectWebSocket(url, options, redisClient) {
                     data: info
                 }));
             }
-        }, 10000);
+        }, 60000);
     });
 
     ws.on('close', function open() {
