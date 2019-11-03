@@ -5,25 +5,33 @@ function connectWebSocket(url, options, redisClient) {
 
     let interval;
 
+    const sendInfo = async function () {
+        ws.send(JSON.stringify({
+            messageId: 'status',
+            status: 200,
+            data: redisClient.status
+        }));
+
+        const info = await redisClient.info();
+
+        if (redisClient.status === 'ready') {
+            ws.send(JSON.stringify({
+                messageId: 'info',
+                status: 200,
+                data: info
+            }));
+        }
+    }
+
     ws.on('open', function open() {
         console.log("Connected");
 
-        interval = setInterval(async () => {
-            ws.send(JSON.stringify({
-                messageId: 'status',
-                status: 200,
-                data: redisClient.status
-            }));
+        setTimeout(function () {
+            sendInfo();
+        }, 2000);
 
-            const info = await redisClient.info();
-
-            if (redisClient.status === 'ready') {
-                ws.send(JSON.stringify({
-                    messageId: 'info',
-                    status: 200,
-                    data: info
-                }));
-            }
+        interval = setInterval(function () {
+            sendInfo();
         }, 60000);
     });
 
