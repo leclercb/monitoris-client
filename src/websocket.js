@@ -12,7 +12,7 @@ function connectWebSocket(url, options, redisClient) {
             data: redisClient.status
         }));
 
-        const info = await redisClient.info();
+        const info = await redisClient.info("all");
 
         if (redisClient.status === 'ready') {
             ws.send(JSON.stringify({
