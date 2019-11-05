@@ -7,7 +7,7 @@ function connectWebSocket(url, options, redisClient) {
         console.log("Connected");
     });
 
-    ws.on('close', function open() {
+    ws.on('close', function close() {
         console.log("Connection closed. Trying to reconnect...");
 
         setTimeout(function () {
@@ -20,6 +20,8 @@ function connectWebSocket(url, options, redisClient) {
             const message = JSON.parse(data);
 
             if ('messageId' in message) {
+                console.log(`${message.messageId} (${message.db}): ${message.command} ${(message.parameters || []).join(' ')}`)
+
                 if (redisClient.status === 'ready') {
                     await redisClient.select(message.db);
 
