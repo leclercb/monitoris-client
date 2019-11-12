@@ -8,7 +8,7 @@ function createRedisClient() {
 
     const options = {
         enableOfflineQueue: false,
-        connectionName: 'redismon-proxy',
+        connectionName: 'monitoris-proxy',
         ...nconf.get('redis')
     };
 

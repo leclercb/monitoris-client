@@ -1,6 +1,6 @@
 {
-    "name": "redismon-client",
-    "description": "RedisMon - Redis Monitoring Tool",
+    "name": "monitoris-client",
+    "description": "Monitoris - Redis Monitoring Tool",
     "author": "BL-IT",
     "version": "0.1.0",
     "private": true,
