@@ -3,34 +3,11 @@ const WebSocket = require('ws');
 function connectWebSocket(url, options, redisClient) {
     const ws = new WebSocket(url, options);
 
-    let interval;
-
     ws.on('open', function open() {
         console.log("Connected");
-
-        interval = setInterval(async () => {
-            ws.send(JSON.stringify({
-                messageId: 'status',
-                status: 200,
-                data: redisClient.status
-            }));
-
-            const info = await redisClient.info();
-
-            if (redisClient.status === 'ready') {
-                ws.send(JSON.stringify({
-                    messageId: 'info',
-                    status: 200,
-                    data: info
-                }));
-            }
-        }, 10000);
     });
 
-    ws.on('close', function open() {
-        clearInterval(interval);
-        interval = null;
-
+    ws.on('close', function close() {
         console.log("Connection closed. Trying to reconnect...");
 
         setTimeout(function () {
@@ -43,6 +20,8 @@ function connectWebSocket(url, options, redisClient) {
             const message = JSON.parse(data);
 
             if ('messageId' in message) {
+                console.log(`${message.messageId} (${message.db}): ${message.command} ${(message.parameters || []).join(' ')}`)
+
                 if (redisClient.status === 'ready') {
                     await redisClient.select(message.db);
 

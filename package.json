@@ -1,6 +1,6 @@
 {
-    "name": "redismon-client",
-    "description": "RedisMon - Redis Monitoring Tool",
+    "name": "monitoris-client",
+    "description": "Monitoris - Redis Monitoring Tool",
     "author": "BL-IT",
     "version": "0.1.0",
     "private": true,
@@ -9,7 +9,7 @@
         "package": "pkg src/client.js"
     },
     "dependencies": {
-        "https-proxy-agent": "^2.2.3",
+        "https-proxy-agent": "^3.0.1",
         "ioredis": "^4.14.1",
         "nconf": "^0.10.0",
         "ws": "^7.2.0"
