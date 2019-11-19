@@ -12,6 +12,9 @@
 /build
 /dist
 /lib
+client-linux
+client-macos
+client-win.exe
 
 # Redis
 dump.rdb

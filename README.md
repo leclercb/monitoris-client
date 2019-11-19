@@ -13,9 +13,39 @@ This client allows you to securely connect your Redis instance with Monitoris Cl
 
 # Usage
 
+## Use binary (recommanded)
+
+* Download the latest binary file from [GitHub releases](https://github.com/leclercb/monitoris-client/releases)
+* Copy the following content in a file named `.env` in the same directory as the binary file.
+```
+{
+    "proxy": "wss://proxy.monitoris.app/socket",
+    "instance": {
+        "id": "",
+        "secret": ""
+    },
+    "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "password": ""
+    },
+    "httpProxy": {
+        "enabled": false,
+        "url": ""
+    }
+}
+```
+* Edit the configuration file named `.env`:
+  * instance: the id and secret of your instance (available in Monitoris Instances view)
+  * redis: the connection information of your Redis server ([see ioredis API](https://github.com/luin/ioredis/blob/master/API.md))
+  * httpProxy: only needed if your Redis server is behind a corporate proxy
+* Start the client: `./client-XYZ`
+
+## Use source code
+
 * Download the content of this repository: [master.zip](https://github.com/leclercb/monitoris-client/archive/master.zip)
 * Install the dependencies: `npm install`
-* Edit the configuration in `.env`:
+* Edit the configuration file named `.env`:
   * instance: the id and secret of your instance (available in Monitoris Instances view)
   * redis: the connection information of your Redis server ([see ioredis API](https://github.com/luin/ioredis/blob/master/API.md))
   * httpProxy: only needed if your Redis server is behind a corporate proxy
