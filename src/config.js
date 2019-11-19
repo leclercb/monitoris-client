@@ -8,7 +8,7 @@ nconf
         parseValues: true
     })
     .file({
-        file: process.env.CONFIG_FILE || '.env.local'
+        file: process.env.CONFIG_FILE || '.env'
     });
 
 module.exports = {
