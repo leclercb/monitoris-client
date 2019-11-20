@@ -37,14 +37,20 @@ function connectWebSocket(url, options, redisClient) {
                         ws.send(JSON.stringify({
                             messageId: message.messageId,
                             status: 400,
-                            data: e.toString()
+                            data: {
+                                code: 'redis_execution',
+                                message: e.toString()
+                            }
                         }));
                     }
                 } else {
                     ws.send(JSON.stringify({
                         messageId: message.messageId,
                         status: 405,
-                        data: null
+                        data: {
+                            code: 'redis_not_connected',
+                            message: 'Redis instance is not connected'
+                        }
                     }));
                 }
             }
