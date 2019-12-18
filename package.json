@@ -9,12 +9,12 @@
         "package": "pkg src/client.js"
     },
     "dependencies": {
-        "https-proxy-agent": "^3.0.1",
+        "https-proxy-agent": "^4.0.0",
         "ioredis": "^4.14.1",
         "nconf": "^0.10.0",
-        "ws": "^7.2.0"
+        "ws": "^7.2.1"
     },
     "devDependencies": {
-        "pkg": "^4.4.1"
+        "pkg": "^4.4.2"
     }
 }
