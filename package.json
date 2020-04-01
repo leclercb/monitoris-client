@@ -2,7 +2,7 @@
     "name": "monitoris-client",
     "description": "Monitoris - Redis Monitoring Tool",
     "author": "BL-IT",
-    "version": "0.2.1",
+    "version": "0.2.3",
     "private": true,
     "scripts": {
         "start": "node src/client.js",
@@ -10,11 +10,11 @@
     },
     "dependencies": {
         "https-proxy-agent": "^5.0.0",
-        "ioredis": "^4.16.0",
+        "ioredis": "^4.16.1",
         "nconf": "^0.10.0",
         "ws": "^7.2.3"
     },
     "devDependencies": {
-        "pkg": "^4.4.4"
+        "pkg": "^4.4.5"
     }
 }
