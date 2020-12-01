@@ -10,9 +10,9 @@
     },
     "dependencies": {
         "https-proxy-agent": "^5.0.0",
-        "ioredis": "^4.17.3",
-        "nconf": "^0.10.0",
-        "ws": "^7.3.1"
+        "ioredis": "^4.19.2",
+        "nconf": "^0.11.0",
+        "ws": "^7.4.0"
     },
     "devDependencies": {
         "pkg": "^4.4.9"

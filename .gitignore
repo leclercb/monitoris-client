@@ -27,6 +27,8 @@ dump.rdb
 .env.test.local
 .env.production.local
 
+.eslintcache
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
