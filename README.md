@@ -13,7 +13,7 @@ This client allows you to securely connect your Redis instance with Monitoris Cl
 
 # Usage
 
-## Use binary (recommanded)
+## Use binary (recommended)
 
 * Download the latest binary file from [GitHub releases](https://github.com/leclercb/monitoris-client/releases)
 * Copy the following content in a file named `.env` in the same directory as the binary file.
