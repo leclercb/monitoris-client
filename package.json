@@ -11,7 +11,7 @@
     "dependencies": {
         "https-proxy-agent": "^5.0.0",
         "ioredis": "^4.28.2",
-        "nconf": "^0.11.3",
+        "nconf": "^0.11.4",
         "ws": "^8.4.0"
     },
     "devDependencies": {
